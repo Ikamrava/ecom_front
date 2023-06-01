@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { BsFillBasket3Fill } from 'react-icons/bs';
+import { CartContext } from './CartContext';
 
 
 function Feature({data}) {
  
-    console.log(data)
+const {cart,setCart} = useContext(CartContext)
 
 
     function addHandler(){
-        
+         setCart([...cart,data._id])
+         localStorage.setItem('cart',JSON.stringify([...cart,data._id]))
+
     }
 
 

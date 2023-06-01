@@ -2,7 +2,7 @@
 
 import { MongoClient } from 'mongodb'
 
-MONGODB_URI="mongodb+srv://ecom:Kian9530@cluster0.rsaf8na.mongodb.net/?retryWrites=true&w=majority"
+MONGODB_URI=process.env.NEXT_PUBLIC_MONGODB_URI
 
 if (!MONGODB_URI) {
   throw new Error('Invalid environment variable: "MONGODB_URI"')

@@ -3,10 +3,11 @@ import Head from 'next/head'
 
 import Header from './components/Header'
 import Feature from './components/Feature'
+import AllProducts from './components/AllProducts'
 import { connect } from './lib/mongoose'
 import { Product } from './lib/products'
 
-export default function Home({product}) {
+export default function Home({product,allProducts}) {
   return (
     <div className=' max-w-7xl mx-auto'>
       <Head>
@@ -17,8 +18,8 @@ export default function Home({product}) {
 
       <main >
       <Header/>
-      
       <Feature data={product}/>
+      <AllProducts data={allProducts}/>
 
       </main>
 
@@ -31,8 +32,11 @@ export async function getServerSideProps() {
   const featuredId =  "6474cd6e46b89b5d43bc7318"
   await connect()
   const product = await Product.findById(featuredId)
+  const allProducts = await Product.find({},null,{sort:{updatedAt:-1}})
   return {  
-    props: {product:JSON.parse (JSON.stringify(product))}
+    props: {
+      allProducts:JSON.parse (JSON.stringify(allProducts)),
+      product:JSON.parse (JSON.stringify(product))}
   }
 
 }
