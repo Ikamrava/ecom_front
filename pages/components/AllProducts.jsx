@@ -6,14 +6,10 @@ import { CartContext } from './CartContext';
 
 function NewProducts({data}) {
 
-  const {cart,setCart} = useContext(CartContext)
+  const {addToCart} = useContext(CartContext)
 
 
-    function addToCart(id){
-         setCart([...cart,data._id])
-         localStorage.setItem('cart',JSON.stringify([...cart,id]))
-
-    }
+  
   
   return (
     <div className=' pb-6 px-2 flex mx-auto  mt-3 rounded-2xl items-center justify-center  '>
@@ -35,7 +31,7 @@ function NewProducts({data}) {
 
               <div className='flex items-center justify-center gap-4 mb-4 md:mb-0    '>
                 <label className='text-center  text-2xl font-bold'>{"£"+item.price}</label>
-                <Button className='bg-[#f2f2f2] text-[#000] rounded-2xl shadow-lg p-2' onClick={(id)=>addToCart(item._id)}>Add to Cart</Button>
+                <Button className='bg-[#f2f2f2] text-[#000] rounded-2xl shadow-lg p-2' onClick={()=>addToCart(item._id)}>Add to Cart</Button>
               </div>
 
               </div>

@@ -14,8 +14,8 @@ export  default async function handler(req, res) {
     
         await connect()
         const ids = await req.body.ids
-        console.log(ids)
-        
+
+        console.log("run")
         // const p = 
         res.json(await Product.find({_id:ids}))
         // 
