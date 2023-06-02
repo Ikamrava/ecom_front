@@ -87,53 +87,54 @@ function cart() {
   return (
     <div className='max-w-7xl mx-auto'>
         <Header/>
+        <Container className='mt-10'>
+          <Row>
+            <Col className=' md:w-[70%] text-center'>
+            <Row className=' p-2 bg-slate-300 '>
+              <Col>
+                <h5>Products</h5>
+              </Col>
+              <Col><h5>Quantity</h5></Col>
+              <Col><h5>Price</h5></Col>
+            </Row>
+            
+            {products.map((item)=>(
+              <Row className='   items-center mt-4 border-b-2 border-slate-300 pb-4  '>
+                  <Col className='text-center flex items-center justify-center '>
+                    <img className='text-center max-w-xs md:max-w-28 md:max-h-28 object-contain rounded-2xl shadow-lg p-2 ' src={item.images[0]} alt="" />
+                    </Col>
+                  <Col className=' '>
+                      <div className='flex  justify-center  gap-4  '>
+                              <IoIosRemoveCircle size={25} className='cursor-pointer' onClick={()=>removeFromCart(item._id)}>Remove from cart</IoIosRemoveCircle>
+                                <h5>{cart.filter(id => id === item._id).length}</h5>
+                              <AiFillPlusCircle size={25} className='cursor-pointer' onClick={()=>addToCart(item._id)}>Add to cart</AiFillPlusCircle>
+                      </div>
+                  </Col>
+                  <Col className=' text-center flex items-center justify-center gap-3 '>
+                    <label className='text-center  text-l font-bold'>{"£"+ (item.price * cart.filter(id => id === item._id).length)}</label>
+                   
+                 </Col>
+                 <Button className='bg-[#f2f2f2] text-[#000] rounded-2xl shadow-lg p-2 mt-4' onClick={(id)=>removeHandler(item._id)}>Remove</Button>
+              </Row>
+              ))}
+            </Col>
+            
+            
+            <Col lg={4} md={6} sm={12} className='md:w-[30%]'>
+               <h1>Hi</h1>
+            </Col>
 
-         <div className=' pb-6 px-2  mx-auto  mt-3  flex   '>
-                <table className='max-w-3xl w-full '>
-                  <thead className=' border-b-2 border-[#f2f2f2] bg-[#f2f2f2] text-[#000] font-bold p-2'>
-
-                    <tr className=''>
-                      <th className='text-left'>Product</th>
-                      <th className='text-left'>Quantity</th>
-                      <th className='text-center'>Price</th>
-                    </tr>
-                    
-                  </thead>
-                    
-                    <tbody className='flex flex-col justify-start items-start w-full  '>
-                    {products?.map((item) => (
-                     
-                      <tr key={item._id} className='w-full flex justify-start items-center  border-b-2 border-[#f2f2f2] bg-[#f2f2f2] text-[#000] font-bold p-2 ' >
-                        <th>
-                        <img className='text-center max-w-[80px]'src={item.images[0]}/>
-                        </th>
-                        <th className='flex  justify-center  gap-4 w-full px-4'>
-                        
-                          <IoIosRemoveCircle size={25} className='cursor-pointer' onClick={()=>removeFromCart(item._id)}>Remove from cart</IoIosRemoveCircle>
-                              <h5>{cart.filter(id => id === item._id).length}</h5>
-                          <AiFillPlusCircle size={25} className='cursor-pointer' onClick={()=>addToCart(item._id)}>Add to cart</AiFillPlusCircle>
-                       
-                        </th>
-                        
-                        <th className='text-center'>{item.price}</th>
-                      </tr>
-
-                      
-
-                      
-                    ))}
-
-                    </tbody>
+          </Row>
+        </Container>
 
 
 
-                </table>
 
-         </div>
-                
-        
+         
 
     </div>
+                
+
   )
 }
 
