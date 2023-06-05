@@ -1,4 +1,4 @@
-
+"use client"
 
 import mongoose from 'mongoose';
 export const schema = new mongoose.Schema({

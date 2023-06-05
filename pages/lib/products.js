@@ -1,4 +1,6 @@
 
+"use client"
+
 import mongoose , {model,Schema,models} from 'mongoose';
 import {schema} from "./schema.js"
 

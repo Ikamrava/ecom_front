@@ -1,4 +1,4 @@
-
+"use client"
 import mongoose, { models } from 'mongoose';
 export const order_schema = new mongoose.Schema({
     line_items:{
