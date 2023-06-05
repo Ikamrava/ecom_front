@@ -56,7 +56,7 @@ function PaymentInfo({products,total}) {
 
             <input type="hidden" name='products' value={cart.join(',')} />
 
-            <button className=' btn btn-primary mt-3' onClick={paymentHandler}>Contine to Payment</button>
+            <button className='  bg-yellow-300 mt-3 p-2 font-bold' onClick={paymentHandler}>Contine to Payment</button>
            
 
         </div>

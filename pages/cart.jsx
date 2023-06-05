@@ -52,11 +52,11 @@ function cart() {
 
 
         {cart.length > 0 ? (
-        <Container className='mt-10'>
+        <Container className='mt-10 '>
           <h3>Cart</h3>
           <Row>
             <Col className=' md:w-[70%] text-center'>
-            <Row className=' p-2 bg-slate-300 '>
+            <Row className=' p-2 bg-slate-300 d-md-flex d-none ' >
               <Col >
                 <h6 className='font-bold'>Products</h6>
               </Col>
@@ -70,17 +70,17 @@ function cart() {
                     <img className='text-center max-w-xs md:max-w-28 md:max-h-28 object-contain rounded-2xl shadow-lg p-2 ' src={item.images[0]} alt="" />
                     </Col>
                   <Col className=' '>
-                      <div className='flex  justify-center  gap-4  '>
+                      <div className='flex  justify-center  gap-4 md:mt-0 mt-3   '>
                               <IoIosRemoveCircle size={25} className='cursor-pointer' onClick={()=>removeFromCart(item._id)}>Remove from cart</IoIosRemoveCircle>
                                 <h5>{cart.filter(id => id === item._id).length}</h5>
                               <AiFillPlusCircle size={25} className='cursor-pointer' onClick={()=>addToCart(item._id)}>Add to cart</AiFillPlusCircle>
                       </div>
                   </Col>
-                  <Col className=' text-center flex items-center justify-center gap-3 '>
+                  <Col className=' text-center flex items-center justify-center gap-3 md:mt-0 mt-3 text-xl '>
                     <label className='text-center  text-l font-bold'>{"£"+ (item.price * cart.filter(id => id === item._id).length)}</label>
                    
                  </Col>
-                 <Button className='bg-[#f2f2f2] text-[#000] rounded-2xl shadow-lg p-2 mt-4' onClick={(id)=>removeHandler(item._id)}>Remove</Button>
+                 <Button className='bg-[#f2f2f2] text-[#000] rounded-2xl shadow-lg p-2 mt-4 ' onClick={(id)=>removeHandler(item._id)}>Remove</Button>
               </Row>
               ))}
               <div className='flex items-center justify-end mt-4 gap-4 '>
@@ -92,7 +92,7 @@ function cart() {
               
 
             </Col>
-            <Col xs={4}>
+            <Col >
                <PaymentInfo products={products} total={total}></PaymentInfo>
             </Col>
 
