@@ -67,7 +67,7 @@ function Cart() {
             </Row>
             
             {products.map((item)=>(
-              <Row className='   items-center mt-4 border-b-2 border-slate-300 pb-4  '>
+              <Row key={item._id} className='   items-center mt-4 border-b-2 border-slate-300 pb-4  '>
                   <Col className='text-center flex items-center justify-center '>
                     <img className='text-center max-w-xs md:max-w-28 md:max-h-28 object-contain rounded-2xl shadow-lg p-2 ' src={item.images[0]} alt="" />
                     </Col>
