@@ -54,8 +54,8 @@ function ProductDetails({product}) {
         <div className=' max-w-2xl  mt-5 border-t-2 border-gray-300 mx-5'>
           < h3 className='mt-3 mx-2'> Configuration</h3>
           {Object.entries(product.properties).map(([key, value]) => (
-            <div className='flex  gap-2 ml-4'>
-              <p key={key} className=' font-bold'>{key}: </p>
+            <div className='flex  gap-2 ml-4' key={key}>
+              <p  className=' font-bold'>{key}: </p>
               <span> {value}</span>
             </div>
           
