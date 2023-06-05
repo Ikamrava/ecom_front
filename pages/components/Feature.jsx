@@ -49,7 +49,7 @@ const QuillNoSSRWrapper = dynamic(import('react-quill'), {
             
             </div>
         </div>
-        <div className=' shadow-lg '>
+        <div className=' shadow-lg mt-4 md:mt-0'>
         <img src={data.images[0]} alt="Main Image" width={350} height={150}  className=' rounded-lg' />
         
         </div>  
