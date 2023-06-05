@@ -5,6 +5,12 @@ export const CartContext = createContext({})
 
 export function CartContextProvider({children}) {
     const [cart, setCart] = useState([])
+    const [email, setEmail] = useState("")
+    const [name,setName] = useState("")
+    const [street,setStreet] = useState("")
+    const [city,setCity] = useState("")
+    const [postcode,setPostcode] = useState("")
+    const [country,setCountry] = useState("")
 
 
     function addToCart(id){
@@ -31,19 +37,6 @@ export function CartContextProvider({children}) {
 
         
         
-        // setCart(prev=>{
-        //     const pos = prev.indexOf(id)
-            
-        //     if(pos !== -1){
-        //         return(prev.filter((value,index)=> index !== pos))
-        //     } 
-            
-        //     return prev
-           
-        // })
-
-        
-        
     }
     
 
@@ -57,7 +50,7 @@ export function CartContextProvider({children}) {
     },[])
 
     return (
-        <CartContext.Provider value={{cart, setCart,addToCart,removeFromCart}}>
+        <CartContext.Provider value={{cart, setCart,addToCart,removeFromCart,setName,setStreet,setCity,setPostcode,setCountry,setEmail,name,street,city,postcode,country,email}}>
             {children}
         </CartContext.Provider>
     )

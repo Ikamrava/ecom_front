@@ -20,7 +20,7 @@ function NewProducts({data}) {
             <Col sm={12} md={6} lg={4} xl={3} key={item._id}>
               
               <div className='flex flex-col items-center justify-evenly  rounded-2xl shadow-lg md:h-96 mb-4 md:mb-0 w-full gap-4 '>
-              <Link href={`/product/${item._id}`}>
+              <Link href={`/product/${item._id}`} >
               <div className='   flex items-center justify-center cursor-pointer pt-6    '>
                 <img className=' max-w-xs md:max-w-48 md:max-h-48 object-contain rounded-2xl shadow-lg p-4 ' src={item.images[0]} alt="" />
               </div>

@@ -6,6 +6,7 @@ import Link from 'next/link'
 import axios from 'axios'
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { IoIosRemoveCircle } from 'react-icons/io';
+import PaymentInfo from './components/PaymentInfo'
 
 
 function cart() {
@@ -25,6 +26,9 @@ function cart() {
          setProducts(res.data)
        })
  
+      }else{
+        setProducts([])
+      
       }
       
       
@@ -36,66 +40,28 @@ function cart() {
       setCart(newProducts.map(item=>item._id))
       localStorage.setItem('cart',JSON.stringify(newProducts.map(item=>item._id)))
     }
-
    
-
-                    
-
-      //           <Col key={item._id} className='w-[70%]'>
-      //             <div className='flex flex-col items-center justify-evenly  rounded-2xl shadow-lg md:h-96 mb-4 md:mb-0 w-full gap-4 '>
-      //             <Link href={`/product/${item._id}`}>
-      //               <div className='   flex items-center justify-center cursor-pointer pt-6    '>
-      //                 <img className=' max-w-xs md:max-w-48 md:max-h-48 object-contain rounded-2xl shadow-lg p-4 ' src={item.images[0]} alt="" />
-      //               </div>
-      //             </Link>
-                
-      //           <h5 className='text-center text-2lg truncate w-full px-4 font-bold '>{item.name}</h5>
-      //           <div className='flex  justify-center  gap-4 w-full px-4 '>
-      //                <IoIosRemoveCircle size={25} className='cursor-pointer' onClick={()=>removeFromCart(item._id)}>Remove from cart</IoIosRemoveCircle>
-      //                  <h5>{cart.filter(id => id === item._id).length}</h5>
-      //                <AiFillPlusCircle size={25} className='cursor-pointer' onClick={()=>addToCart(item._id)}>Add to cart</AiFillPlusCircle>
-      //           </div>
-                   
-      //           <div className='flex items-center justify-center gap-4 mb-4 md:mb-0    '>
-      //             <label className='text-center  text-2xl font-bold'>{"£"+ (item.price * cart.filter(id => id === item._id).length)}</label>
-      //             <Button className='bg-[#f2f2f2] text-[#000] rounded-2xl shadow-lg p-2' onClick={(id)=>removeHandler(item._id)}>Remove</Button>
-      //           </div>
-
-      //       </div>
-                      
-      //     </Col>
-      //                 ))}
-
-      //     <Col className=''>
-        
-      //       <h1>Order Confirmation</h1>
-          
-      //     </Col>
-                  
-                  
-              
-      // </Row>
-      //       </Container>
-
-
-
-    
-
-   
-   
+   let total = 0
+   if(products.length > 0){
+    total = products.reduce((acc,item)=> acc + (item.price * cart.filter(id => id === item._id).length),0)
+   }
 
   return (
     <div className='max-w-7xl mx-auto'>
         <Header/>
+
+
+        {cart.length > 0 ? (
         <Container className='mt-10'>
+          <h3>Cart</h3>
           <Row>
             <Col className=' md:w-[70%] text-center'>
             <Row className=' p-2 bg-slate-300 '>
-              <Col>
-                <h5>Products</h5>
+              <Col >
+                <h6 className='font-bold'>Products</h6>
               </Col>
-              <Col><h5>Quantity</h5></Col>
-              <Col><h5>Price</h5></Col>
+              <Col><h6 className='font-bold'>Quantity</h6></Col>
+              <Col><h6 className='font-bold'>Price</h6></Col>
             </Row>
             
             {products.map((item)=>(
@@ -117,15 +83,28 @@ function cart() {
                  <Button className='bg-[#f2f2f2] text-[#000] rounded-2xl shadow-lg p-2 mt-4' onClick={(id)=>removeHandler(item._id)}>Remove</Button>
               </Row>
               ))}
+              <div className='flex items-center justify-end mt-4 gap-4 '>
+              <h5>Total:</h5>
+              <h5>£{total}</h5>
+
+
+              </div>
+              
+
             </Col>
-            
-            
-            <Col lg={4} md={6} sm={12} className='md:w-[30%]'>
-               <h1>Hi</h1>
+            <Col xs={4}>
+               <PaymentInfo products={products} total={total}></PaymentInfo>
             </Col>
 
           </Row>
         </Container>
+        ):
+        
+        <div className='max-w-7xl mx-auto mt-6 shadow-lg p-4 rounded-2xl'>
+          <h4>Cart is empty</h4>
+          </div>
+        
+        }
 
 
 
@@ -141,20 +120,3 @@ function cart() {
 export default cart
 
 
-// export async function getServerSideProps() {
-//   const {cart} = useContext(CartContext)
-//   await connect()
-//   const cartList = []
-//   cart.map(item=>{
-//     const product = Product.findById(item)
-//     cartList.push(product)
-//   })
-  
-  
-  
-//   return {  
-//     props: {
-//       product:JSON.parse (JSON.stringify(cartList))}
-//   }
-
-// }
